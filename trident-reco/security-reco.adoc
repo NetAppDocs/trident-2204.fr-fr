@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: trident-reco/security-reco.html 
+keywords: security, chap, trident, namespace 
+summary: 'Suivez les recommandations indiquées ici pour vous assurer que votre installation d"Astra Trident est sécurisée.' 
+---
+= Sécurité
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Suivez les recommandations indiquées ici pour vous assurer que votre installation d'Astra Trident est sécurisée.
+
+
+
+== Exécutez Astra Trident dans son propre espace de noms
+
+Il est important d'empêcher les applications, les administrateurs d'applications, les utilisateurs et les applications de gestion d'accéder aux définitions d'objets Astra Trident ou aux pods pour assurer un stockage fiable et bloquer tout risque d'activité malveillante.
+
+Pour séparer les autres applications et utilisateurs d'Astra Trident, installez toujours Astra Trident dans son propre espace de noms Kubernetes (`trident`). L'utilisation d'Astra Trident dans son propre espace de noms garantit que seul le personnel d'administration Kubernetes a accès au pod Trident Astra et aux artéfacts (tels que les secrets d'arrière-plan et CHAP le cas échéant) stockés dans les objets CRD devant être namestes. Vous devez vous assurer que seuls les administrateurs ont accès à l'espace de noms Astra Trident et y ont donc accès `tridentctl` client supplémentaire.
+
+
+
+== Utilisez l'authentification CHAP avec les systèmes back-end ONTAP SAN
+
+Astra Trident prend en charge l'authentification CHAP pour les workloads SAN de ONTAP (à l'aide du `ontap-san` et `ontap-san-economy` pilotes). NetApp recommande d'utiliser le protocole CHAP bidirectionnel avec Astra Trident pour l'authentification entre l'hôte et le système back-end de stockage.
+
+Pour les systèmes ONTAP back-end qui utilisent les pilotes de stockage SAN, Astra Trident peut configurer le protocole CHAP bidirectionnel et gérer les noms d'utilisateur et les secrets CHAP via `tridentctl`. Voir link:../trident-use/ontap-san-prep.html["ici"^] Pour comprendre comment Astra Trident configure le protocole CHAP sur les systèmes back-end ONTAP.
+
+
+NOTE: La prise en charge CHAP pour les systèmes back-end ONTAP est disponible avec Trident 20.04 et versions ultérieures.
+
+
+
+== Utilisez l'authentification CHAP avec les systèmes back-end NetApp HCI et SolidFire
+
+NetApp recommande de déployer le protocole CHAP bidirectionnel pour garantir l'authentification entre l'hôte et les systèmes back-end NetApp HCI et SolidFire. Astra Trident utilise un objet secret qui inclut deux mots de passe CHAP par locataire. Lorsque Trident est installé en tant que fournisseur CSI, il gère les secrets CHAP et les stocke dans un `tridentvolume` Objet CR pour la PV correspondante. Lorsque vous créez un volume persistant, CSI Trident utilise les secrets CHAP pour initier une session iSCSI et communiquer avec le système NetApp HCI et SolidFire via CHAP.
+
+
+NOTE: Les volumes créés par CSI Trident ne sont associés à aucun groupe d'accès de volume.
+
+Sur le système front-end non CSI, la connexion de volumes en tant que périphériques sur les nœuds workers est gérée par Kubernetes. Après la création de volumes, Astra Trident effectue un appel d'API vers le système NetApp HCI/SolidFire pour récupérer les secrets de ce locataire n'existe pas encore. Astra Trident transmet ensuite les secrets de Kubernetes. Le kubelet situé sur chaque nœud accède aux secrets de l'API Kubernetes et les utilise pour exécuter/activer CHAP entre chaque nœud accédant au volume et le système NetApp HCI/SolidFire où se trouvent les volumes.

@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: trident-use/automatic-workernode.html 
+keywords: beta feature, trident, automatic worker node, worker node prep, preparation, NFS, iSCSI 
+summary: Astra Trident peut automatiquement installer les outils NFS et iSCSI requis sur les nœuds présents dans le cluster Kubernetes. 
+---
+= Préparation automatique du nœud de travail
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident peut automatiquement installer le requis `NFS` et `iSCSI` Outils sur les nœuds présents dans le cluster Kubernetes. Il s'agit d'une fonction *bêta* et est *non destiné aux grappes de production*. Aujourd'hui, cette fonction est disponible pour les nœuds qui exécutent *CentOS, RHEL et Ubuntu*.
+
+Pour ce faire, Astra Trident inclut un nouveau drapeau d'installation : `--enable-node-prep` pour les installations déployées avec `tridentctl`. Pour les déploiements avec l'opérateur Trident, utilisez l'option booléenne `enableNodePrep`.
+
+
+WARNING: Le `--enable-node-prep` L'option d'installation permet à Astra Trident d'installer et de s'assurer que les packages et/ou services NFS et iSCSI sont exécutés lorsqu'un volume est monté sur un nœud worker. Il s'agit d'une fonction *bêta* destinée à être utilisée dans les environnements de développement/test qui est *non qualifié* pour la production.
+
+Lorsque le `--enable-node-prep` Flag est inclus dans les installations Trident d'Astra déployées avec `tridentctl`, voici ce qui se passe:
+
+. Lors de l'installation, Astra Trident enregistre les nœuds sur lesquels il s'exécute.
+. Lorsqu'une demande de demande de demande de volume persistant est formulée, Astra Trident crée un volume persistant à partir de l'un des systèmes back-end gérés.
+. Pour utiliser la demande de volume persistant dans un pod, Astra Trident doit monter le volume sur le nœud sur lequel le pod s'exécute. Astra Trident tente d'installer les utilitaires clients NFS/iSCSI requis et de s'assurer que les services requis sont actifs. Cette opération s'effectue avant le montage du volume.
+
+
+La préparation d'un nœud de travail s'effectue une seule fois dans le cadre de la première tentative de montage d'un volume. Tous les montages de volume suivants doivent réussir tant que les modifications ne sont pas apportées en dehors d'Astra Trident `NFS` et `iSCSI` utilitaires.
+
+Ainsi, Astra Trident peut s'assurer que tous les nœuds d'un cluster Kubernetes disposent des utilitaires nécessaires au montage et à la connexion des volumes. Pour les volumes NFS, l'export policy doit également permettre le montage du volume. Trident peut gérer automatiquement les règles d'exportation par système back-end. Les utilisateurs peuvent également gérer les règles d'exportation hors bande.
