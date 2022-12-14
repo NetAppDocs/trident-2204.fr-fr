@@ -18,7 +18,7 @@ WARNING: Le `tridentctl` Binaire pour Linux fourni dans le fichier zip du progra
 
 
 
-== Nouveautés en 22.04
+== Nouveautés de la version 22.04
 
 NetApp améliore et améliore continuellement ses produits et services. Voici quelques-unes des nouveautés d'Astra Trident. Pour les versions précédentes, voir https://docs.netapp.com/us-en/trident/earlier-versions.html["Versions antérieures de la documentation"].
 
