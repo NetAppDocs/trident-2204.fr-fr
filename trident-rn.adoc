@@ -29,13 +29,13 @@ IMPORTANT: Si vous effectuez une mise à niveau à partir d'une version précéd
 
 === Correctifs
 
-* Amélioration de l'analyse des noms d'initiateurs iSCSI. (Problème [#681](https://github.com/NetApp/trident/issues/681))[]
-* Problème résolu lorsque les paramètres de classe de stockage CSI n'étaient pas autorisés. (Problème [#598](https://github.com/NetApp/trident/issues/598))[]
-* Déclaration de clé en double fixe dans Trident CRD. (Problème [#671](https://github.com/NetApp/trident/issues/671))[]
-* Correction des journaux CSI instantanés erronés. (Problème [#629](https://github.com/NetApp/trident/issues/629))[]
-* Résolution du problème lié à l'annulation de la publication des volumes sur les nœuds supprimés. (Problème [#691](https://github.com/NetApp/trident/issues/691))[]
-* Ajout de la gestion des incohérences du système de fichiers sur les périphériques en bloc. (Problème [#656](https://github.com/NetApp/trident/issues/656))[]
-* Problème résolu extraction automatique des images lors de la configuration du `imageRegistry` indicateur pendant l'installation. (Problème [#715](https://github.com/NetApp/trident/issues/715))[]
+* Amélioration de l'analyse des noms d'initiateurs iSCSI. (Problème [#681]
+* Problème résolu lorsque les paramètres de classe de stockage CSI n'étaient pas autorisés. (Problème [#598]
+* Déclaration de clé en double fixe dans Trident CRD. (Problème [#671]
+* Correction des journaux CSI instantanés erronés. (Problème [#629]
+* Résolution du problème lié à l'annulation de la publication des volumes sur les nœuds supprimés. (Problème [#691]
+* Ajout de la gestion des incohérences du système de fichiers sur les périphériques en bloc. (Problème [#656]
+* Problème résolu extraction automatique des images lors de la configuration du `imageRegistry` indicateur pendant l'installation. (Problème [#715]
 * Problème résolu où le pilote ANF n'a pas réussi à cloner un volume avec plusieurs règles d'exportation.
 
 
@@ -43,10 +43,10 @@ IMPORTANT: Si vous effectuez une mise à niveau à partir d'une version précéd
 
 === Améliorations
 
-* Les connexions entrantes aux terminaux sécurisés de Trident requièrent désormais un minimum de TLS 1.3. (Problème [#698](https://github.com/NetApp/trident/issues/698))[]
+* Les connexions entrantes aux terminaux sécurisés de Trident requièrent désormais un minimum de TLS 1.3. (Problème [#698]
 * Trident ajoute désormais des en-têtes HSTS aux réponses à partir de ses terminaux sécurisés.
 * Trident tente désormais d'activer automatiquement la fonctionnalité d'autorisations unix Azure NetApp Files.
-* *Kubernetes*: Trident demonset s'exécute maintenant dans la classe de priorité critique du nœud système. (Problème [#694](https://github.com/NetApp/trident/issues/694))[]
+* *Kubernetes*: Trident demonset s'exécute maintenant dans la classe de priorité critique du nœud système. (Problème [#694]
 
 
 
