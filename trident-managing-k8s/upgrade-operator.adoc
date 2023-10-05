@@ -20,7 +20,7 @@ Pour effectuer la mise à niveau à l'aide de l'opérateur, les conditions suiva
 * Vous devez avoir une installation Trident basée sur CRD. Ceci représente toutes les versions de 19.07 et ultérieures. Si vous avez une installation basée sur CSI, vous avez probablement une installation à base de CRD.
 * Si vous avez désinstallé CSI Trident et que les métadonnées de l'installation persistent, vous pouvez effectuer une mise à niveau à l'aide de l'opérateur.
 * Une seule installation Astra Trident doit exister sur l'ensemble des espaces de noms d'un cluster Kubernetes donné.
-* Vous devez utiliser un cluster Kubernetes exécutant link:requirements.html["version 1.18 - 1.24"^].
+* Vous devez utiliser un cluster Kubernetes exécutant  link:../trident-get-started/requirements.html["version 1.18 - 1.24"^].
 * Si des CRD alpha snapshot sont présents, vous devez les supprimer avec `tridentctl obliviate alpha-snapshot-crd`. Ceci supprime les CRD pour la spécification de snapshot alpha. Pour les snapshots existants qui doivent être supprimés/migrés, reportez-vous à la section https://netapp.io/2020/01/30/alpha-to-beta-snapshots/["de ce blog"^].
 
 
@@ -69,7 +69,7 @@ Version:  v20.10.1
 ----
 +
 
-NOTE: Si l'état s'affiche `Updating`, assurez-vous de le résoudre avant de continuer. Pour obtenir la liste des valeurs d'état possibles, reportez-vous à la section https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html["ici"^].
+NOTE: Si l'état s'affiche `Updating`, assurez-vous de le résoudre avant de continuer. Pour obtenir la liste des valeurs d'état possibles, reportez-vous à la section link:../kubernetes-deploy-operator.html["ici"^].
 
 . Créer le `TridentOrchestrator` CRD en utilisant le manifeste fourni avec le programme d'installation Trident.
 +
@@ -86,7 +86,7 @@ $ kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1
 . Supprimez l'opérateur délimité par l'espace de noms à l'aide de son manifeste. Pour effectuer cette étape, vous devez utiliser la `bundle.yaml` fichier utilisé pour déployer l'opérateur délimité par l'espace de noms. Vous pouvez obtenir `bundle.yaml` à partir du https://github.com/NetApp/trident/blob/stable/v20.10/deploy/bundle.yaml["Référentiel Trident"^]. Veillez à utiliser la branche appropriée.
 +
 
-NOTE: Vous devez apporter les modifications nécessaires aux paramètres d'installation de Trident (par exemple, en modifiant les valeurs de `tridentImage`, `autosupportImage`, un référentiel d'images privé, et la fourniture `imagePullSecrets`) après avoir supprimé l'opérateur du périmètre de l'espace de noms et avant d'installer l'opérateur du périmètre de cluster. Pour obtenir une liste complète des paramètres pouvant être mis à jour, reportez-vous à la section link:../trident-deploy-k8s/kubernetes-customize-deploy.html["liste des paramètres"^].
+NOTE: Vous devez apporter les modifications nécessaires aux paramètres d'installation de Trident (par exemple, en modifiant les valeurs de `tridentImage`, `autosupportImage`, un référentiel d'images privé, et la fourniture `imagePullSecrets`) après avoir supprimé l'opérateur du périmètre de l'espace de noms et avant d'installer l'opérateur du périmètre de cluster. Pour obtenir une liste complète des paramètres pouvant être mis à jour, reportez-vous à la section link:../kubernetes-customize-deploy.html["liste des paramètres"].
 
 +
 [listing]

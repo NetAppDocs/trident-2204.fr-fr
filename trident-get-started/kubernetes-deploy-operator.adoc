@@ -14,7 +14,7 @@ summary: 'Vous pouvez déployer Astra Trident avec l"opérateur Trident. Vous po
 Vous pouvez déployer Astra Trident avec l'opérateur Trident. Vous pouvez déployer l'opérateur Trident de deux manières :
 
 * Avec Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["Graphique Helm"^]: Le graphique Helm déploie l'opérateur Trident et installe Trident en une étape.
-* Manuellement : Trident fournit un link:https://github.com/NetApp/trident/blob/master/deploy/bundle.yaml["pack.yaml"^] fichier pouvant être utilisé pour installer l'opérateur et créer des objets associés.
+* Manuellement : Trident fournit un link:https://github.com/NetApp/trident/blob/stable/v22.04/deploy/bundle.yaml["pack.yaml"^] fichier pouvant être utilisé pour installer l'opérateur et créer des objets associés.
 
 
 
